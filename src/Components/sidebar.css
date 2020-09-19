@@ -1,0 +1,46 @@
+.sidebar {
+  flex: 0.15;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #000;
+  color: #aaa !important;
+  height: 100vh;
+}
+.sidebar img {
+  width: 200px;
+}
+.nav__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  margin-top: 2px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.nav__option i,
+.nav__option span {
+  margin: 0 10px;
+}
+
+.nav__option:hover {
+  background-color: #3e3e3e;
+}
+.playlists__header {
+  margin-top: 20px;
+  padding: 8px;
+  color: #474747;
+  border-bottom: 1px solid #393939;
+}
+.playlists {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  overflow: auto;
+}
