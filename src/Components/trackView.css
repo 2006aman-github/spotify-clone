@@ -1,0 +1,66 @@
+.track__view {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.track__banner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 250px;
+}
+.track__banner img {
+  height: 100%;
+}
+.track__details {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.track__details h1 {
+  font-size: 4rem;
+}
+.track__details small {
+  margin-top: 40px;
+}
+.track__contents {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+.track__song {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 10px;
+}
+.track__song__left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 0.5;
+}
+.track__song__left img {
+  height: 100%;
+  object-fit: contain;
+}
+.song__details {
+  margin-left: 15px;
+}
+.song__details h4 {
+  font-size: 0.9rem;
+}
+.track__song__center {
+  flex: 0.4;
+}
+.track__song__right {
+  flex: 0.1;
+  text-align: right;
+}
+.track__song:hover {
+  cursor: pointer;
+  background-color: rgb(56, 56, 56);
+  border-radius: 8px;
+}

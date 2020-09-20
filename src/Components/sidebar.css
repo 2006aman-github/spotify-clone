@@ -1,14 +1,28 @@
 .sidebar {
-  flex: 0.15;
+  flex: 0.16;
   display: flex;
   flex-direction: column;
   padding: 10px;
   background-color: #000;
   color: #aaa !important;
+  position: sticky;
+  top: 0;
+  left: 0;
   height: 100vh;
 }
 .sidebar img {
   width: 200px;
+}
+.active {
+  background-color: #3e3e3e;
+}
+.playlists > p {
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.playlists > p:hover {
+  color: #ddd;
 }
 .nav__option {
   width: 100%;
@@ -27,7 +41,7 @@
 }
 
 .nav__option:hover {
-  background-color: #3e3e3e;
+  background-color: #464646;
 }
 .playlists__header {
   margin-top: 20px;

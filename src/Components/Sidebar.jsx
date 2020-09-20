@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sidebar.css";
+import { getTokenFromUrl } from "../spotify";
+import SpotifyWebApi from "spotify-web-api-js";
+import { useStateValue } from "../StateProvider";
 
-function Sidebar() {
+const spotify = new SpotifyWebApi();
+
+function Sidebar({ userToken }) {
+  const [Playlists, setPlaylists] = useState([]);
+  const [{ trackViewStatus }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    if (userToken) {
+      spotify.setAccessToken(userToken);
+      spotify.getUserPlaylists().then((playlists) => {
+        setPlaylists(playlists.items);
+      });
+    }
+  }, []);
+
+  const handleTrackView = () => {
+    dispatch({
+      type: "SET_TRACK_VIEW",
+      trackId: "",
+      trackName: "",
+      trackImage: "",
+      trackArtist: "",
+      isTrue: false,
+    });
+  };
   return (
     <div className="sidebar">
       <img
         src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
         alt=""
       />
-      <div className="sidebar__nav">
-        <div className="nav__option">
+      <div className={"sidebar__nav"}>
+        <div
+          onClick={handleTrackView}
+          className={
+            trackViewStatus.isTrue ? "nav__option" : "nav__option active"
+          }
+        >
           <i className="fa fa-home"></i> <span>Home</span>
         </div>
         <div className="nav__option">
@@ -19,8 +51,12 @@ function Sidebar() {
           <i className="fa fa-music"></i> <span>Your Library</span>
         </div>
       </div>
-      <p className='playlists__header'>PLAYLISTS</p>
-      <div className="playlists">playlists</div>
+      <p className="playlists__header">PLAYLISTS</p>
+      <div className="playlists">
+        {Playlists.map((playlist) => (
+          <p>{playlist.name}</p>
+        ))}
+      </div>
     </div>
   );
 }
