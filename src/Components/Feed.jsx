@@ -5,6 +5,7 @@ import "./feed.css";
 import Track from "./Track";
 import TrackView from "./TrackView";
 import { useStateValue } from "../StateProvider";
+import PlayingSong from "./PlayingSong";
 
 const spotify = new SpotifyWebApi();
 
@@ -12,7 +13,7 @@ function Feed({ userToken }) {
   const [Tracks, setTracks] = useState([]);
   const [user, setUser] = useState({});
   const [userImage, setUserImage] = useState("");
-  const [popularPlaylists, setPopularPlaylists] = useState([]);
+  const [newReleases, setNewReleases] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
   const [BollywoodPlaylists, setBollywoodPlaylists] = useState([]);
   const [PunjabiPlaylists, setPunjabiPlaylists] = useState([]);
@@ -25,7 +26,8 @@ function Feed({ userToken }) {
       spotify.setAccessToken(userToken);
 
       spotify.getNewReleases().then((releases) => {
-        setPopularPlaylists(releases.albums.items.slice(0, 12));
+        setNewReleases(releases.albums.items.slice(0, 12));
+        console.log(releases.albums.items.slice(0, 12));
       });
       spotify.getMyRecentlyPlayedTracks().then((recentTracks) => {
         setRecentlyPlayed(recentTracks.items.slice(0, 6));
@@ -33,6 +35,7 @@ function Feed({ userToken }) {
       });
       spotify.getCategoryPlaylists("bollywood").then((bollywoodPlaylists) => {
         setBollywoodPlaylists(bollywoodPlaylists.playlists.items.slice(0, 10));
+        console.log(bollywoodPlaylists.playlists.items.slice(0, 10));
       });
       spotify.getCategoryPlaylists("punjabi").then((punjabiPlaylists) => {
         setPunjabiPlaylists(punjabiPlaylists.playlists.items);
@@ -73,6 +76,7 @@ function Feed({ userToken }) {
                   trackImage={recentTrack.track.album.images[0].url}
                   trackName={recentTrack.track.name}
                   trackArtist={recentTrack.track.artists[0].name}
+                  type={recentTrack.type}
                 />
               ))}
             </div>
@@ -81,12 +85,13 @@ function Feed({ userToken }) {
             <h2>Popular Playlists</h2>
             <br />
             <div className="row__content">
-              {popularPlaylists.map((popularPlaylist) => (
+              {newReleases.map((newRelease) => (
                 <Track
-                  trackImage={popularPlaylist.images[0].url}
-                  trackName={popularPlaylist.name}
-                  trackArtist={popularPlaylist.artists[0].name}
-                  trackId={popularPlaylist.id}
+                  trackImage={newRelease.images[0].url}
+                  trackName={newRelease.name}
+                  trackArtist={newRelease.artists[0].name}
+                  trackId={newRelease.id}
+                  type={newRelease.type}
                 />
               ))}
             </div>
@@ -101,6 +106,7 @@ function Feed({ userToken }) {
                   trackName={BollywoodPlaylist.name}
                   trackArtist={BollywoodPlaylist.description}
                   trackId={BollywoodPlaylist.id}
+                  type={BollywoodPlaylist.type}
                 />
               ))}
             </div>
@@ -115,6 +121,7 @@ function Feed({ userToken }) {
                   trackName={PunjabiPlaylist.name}
                   trackArtist={PunjabiPlaylist.description}
                   trackId={PunjabiPlaylist.id}
+                  type={PunjabiPlaylist.type}
                 />
               ))}
             </div>
@@ -129,6 +136,7 @@ function Feed({ userToken }) {
                   trackName={FeaturedPlaylist.name}
                   trackArtist={FeaturedPlaylist.description}
                   trackId={FeaturedPlaylist.id}
+                  type={FeaturedPlaylist.type}
                 />
               ))}
             </div>
@@ -137,7 +145,9 @@ function Feed({ userToken }) {
       ) : (
         <TrackView userToken={userToken} />
       )}
-      <div className="song__row"></div>
+      <div className="song__row">
+        <PlayingSong />
+      </div>
     </div>
   );
 }

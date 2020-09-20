@@ -5,6 +5,7 @@ export const initialState = {
     trackName: "",
     trackImage: "",
     trackArtist: "",
+    type: "",
   },
 };
 
@@ -19,6 +20,7 @@ const reducer = (state, action) => {
           trackImage: action.trackImage,
           trackName: action.trackName,
           trackArtist: action.trackArtist,
+          type: action.trackType,
         },
       };
     default:

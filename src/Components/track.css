@@ -11,7 +11,7 @@ a {
 .track {
   width: 160px;
   height: 230px;
-  min-width: 75px;
+  min-width: 125px;
   min-height: 100px;
   background-color: rgb(44, 44, 44);
   display: flex;

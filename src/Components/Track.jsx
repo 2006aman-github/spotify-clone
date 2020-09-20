@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useStateValue } from "../StateProvider";
 import "./track.css";
 
-function Track({ trackImage, trackName, trackArtist, trackId }) {
+function Track({ trackImage, trackName, trackArtist, trackId, type }) {
   const [{ trackViewStatus }, dispatch] = useStateValue();
   const handleTrackView = () => {
     dispatch({
@@ -12,7 +12,9 @@ function Track({ trackImage, trackName, trackArtist, trackId }) {
       trackImage: trackImage,
       trackArtist: trackArtist,
       isTrue: true,
+      trackType: type,
     });
+    console.log(trackViewStatus.isTrue);
   };
   return (
     <div onClick={handleTrackView} className={"track"}>

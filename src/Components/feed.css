@@ -29,9 +29,6 @@
   height: 40px;
   border-radius: 500px;
 }
-a {
-  text-decoration: none !important;
-}
 .profile__btn > span {
   margin-left: 20px;
   margin-right: 10px;
