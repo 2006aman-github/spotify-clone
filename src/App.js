@@ -21,7 +21,6 @@ function App() {
         return playlist;
       });
     }
-    console.log(token);
   });
   return (
     <div className="App">

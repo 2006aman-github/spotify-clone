@@ -19,6 +19,18 @@ function Sidebar({ userToken }) {
     }
   }, []);
 
+  const showPlaylist = (name, id, image, artist) => {
+    dispatch({
+      type: "SET_TRACK_VIEW",
+      trackId: id,
+      trackName: name,
+      trackImage: image,
+      trackArtist: artist,
+      isTrue: true,
+      trackType: "playlist",
+    });
+  };
+
   const handleTrackView = () => {
     dispatch({
       type: "SET_TRACK_VIEW",
@@ -29,9 +41,11 @@ function Sidebar({ userToken }) {
       isTrue: false,
     });
   };
+  console.log(Playlists[0]);
   return (
     <div className="sidebar">
       <img
+        onClick={handleTrackView}
         src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
         alt=""
       />
@@ -54,7 +68,18 @@ function Sidebar({ userToken }) {
       <p className="playlists__header">PLAYLISTS</p>
       <div className="playlists">
         {Playlists.map((playlist) => (
-          <p>{playlist.name}</p>
+          <p
+            onClick={(e) =>
+              showPlaylist(
+                playlist.name,
+                playlist.id,
+                playlist.images[0].url,
+                playlist.owner.display_name
+              )
+            }
+          >
+            {playlist.name}
+          </p>
         ))}
       </div>
     </div>

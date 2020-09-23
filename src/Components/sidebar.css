@@ -8,7 +8,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100vh !important;
 }
 .sidebar img {
   width: 200px;

@@ -13,7 +13,7 @@ function TrackView({ userToken }) {
 
   useEffect(() => {
     if (userToken) {
-      console.log(trackViewStatus.trackId);
+      //   console.log(trackViewStatus.trackId);
       if (trackViewStatus.type === "playlist") {
         spotify.getPlaylistTracks(trackViewStatus.trackId).then((playlist) => {
           setPlaylist(playlist.items);
@@ -22,7 +22,7 @@ function TrackView({ userToken }) {
       } else if (trackViewStatus.type === "album") {
         spotify.getAlbumTracks(trackViewStatus.trackId).then((album) => {
           setPlaylist(album.items);
-          console.log(album);
+          //   console.log(album);
           setIsAlbum(true);
         });
       }

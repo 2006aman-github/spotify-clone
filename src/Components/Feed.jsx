@@ -27,19 +27,19 @@ function Feed({ userToken }) {
 
       spotify.getNewReleases().then((releases) => {
         setNewReleases(releases.albums.items.slice(0, 12));
-        console.log(releases.albums.items.slice(0, 12));
+        // console.log(releases.albums.items.slice(0, 12));
       });
       spotify.getMyRecentlyPlayedTracks().then((recentTracks) => {
         setRecentlyPlayed(recentTracks.items.slice(0, 6));
-        console.log(recentTracks.items);
+        // console.log(recentTracks.items);
       });
       spotify.getCategoryPlaylists("bollywood").then((bollywoodPlaylists) => {
         setBollywoodPlaylists(bollywoodPlaylists.playlists.items.slice(0, 10));
-        console.log(bollywoodPlaylists.playlists.items.slice(0, 10));
+        // console.log(bollywoodPlaylists.playlists.items.slice(0, 10));
       });
       spotify.getCategoryPlaylists("punjabi").then((punjabiPlaylists) => {
         setPunjabiPlaylists(punjabiPlaylists.playlists.items);
-        console.log(punjabiPlaylists.playlists.items);
+        // console.log(punjabiPlaylists.playlists.items);
       });
       spotify.getFeaturedPlaylists().then((featuredPlaylists) => {
         setFeaturedPlaylists(featuredPlaylists.playlists.items);
