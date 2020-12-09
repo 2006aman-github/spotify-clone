@@ -6,7 +6,8 @@ import Track from "./Track";
 import TrackView from "./TrackView";
 import { useStateValue } from "../StateProvider";
 import PlayingSong from "./PlayingSong";
-
+import DehazeIcon from "@material-ui/icons/Dehaze";
+import { IconButton } from "@material-ui/core";
 const spotify = new SpotifyWebApi();
 
 function Feed({ userToken }) {
@@ -18,8 +19,7 @@ function Feed({ userToken }) {
   const [BollywoodPlaylists, setBollywoodPlaylists] = useState([]);
   const [PunjabiPlaylists, setPunjabiPlaylists] = useState([]);
   const [FeaturedPlaylists, setFeaturedPlaylists] = useState([]);
-  const [deviceId, setDeviceId] = useState("");
-  const [{ trackViewStatus }, dispatch] = useStateValue();
+  const [{ trackViewStatus, openSideBar }, dispatch] = useStateValue();
 
   useEffect(() => {
     if (userToken) {
@@ -57,6 +57,17 @@ function Feed({ userToken }) {
   return (
     <div className="feed">
       <div className="feed__nav">
+        <IconButton
+          color={"secondary"}
+          onClick={(e) => {
+            dispatch({
+              type: "HANDLE_SIDEBAR",
+              openSideBar: true,
+            });
+          }}
+        >
+          <DehazeIcon />
+        </IconButton>
         <div className="profile__btn">
           <img src={userImage} alt="" />
           <span>{user?.display_name}</span>

@@ -9,9 +9,22 @@
   top: 0;
   left: 0;
   height: 100vh !important;
+  /* height: 100vh !important; */
+}
+.mobile__sidebar {
+  position: fixed;
+  top: 0;
+  left: 10;
+  z-index: 10;
 }
 .sidebar img {
   width: 200px;
+}
+.sidebar__icon {
+  position: relative;
+  display: block !important;
+  top: 0%;
+  left: 0%;
 }
 .active {
   background-color: #3e3e3e;
@@ -48,6 +61,9 @@
   padding: 8px;
   color: #474747;
   border-bottom: 1px solid #393939;
+}
+.hide__sidebar {
+  display: none;
 }
 .playlists {
   padding: 8px;

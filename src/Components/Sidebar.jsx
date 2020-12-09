@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./sidebar.css";
-import { getTokenFromUrl } from "../spotify";
+// import { getTokenFromUrl } from "../spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useStateValue } from "../StateProvider";
+import { IconButton } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import DehazeIcon from "@material-ui/icons/Dehaze";
 
 const spotify = new SpotifyWebApi();
 
 function Sidebar({ userToken }) {
   const [Playlists, setPlaylists] = useState([]);
-  const [{ trackViewStatus }, dispatch] = useStateValue();
+  const [{ trackViewStatus, openSideBar }, dispatch] = useStateValue();
+  const [windowWidth, setWindowWidth] = useState();
 
   useEffect(() => {
     if (userToken) {
@@ -17,6 +21,14 @@ function Sidebar({ userToken }) {
         setPlaylists(playlists.items);
       });
     }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+      console.log(window.innerWidth);
+    });
+    setWindowWidth(window.innerWidth);
   }, []);
 
   const showPlaylist = (name, id, image, artist) => {
@@ -41,9 +53,31 @@ function Sidebar({ userToken }) {
       isTrue: false,
     });
   };
-  console.log(Playlists[0]);
+  // console.log(Playlists[0]);
   return (
-    <div className="sidebar">
+    <div
+      className={
+        windowWidth <= 650
+          ? openSideBar
+            ? "sidebar mobile__sidebar"
+            : "sidebar hide__sidebar"
+          : "sidebar"
+      }
+      // className="sidebar"
+    >
+      <div className="sidebar__icon">
+        <IconButton
+          color={"secondary"}
+          onClick={(e) => {
+            dispatch({
+              type: "HANDLE_SIDEBAR",
+              openSideBar: false,
+            });
+          }}
+        >
+          <CloseIcon color={"secondary"} />
+        </IconButton>
+      </div>
       <img
         onClick={handleTrackView}
         src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"

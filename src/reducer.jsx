@@ -6,6 +6,7 @@ export const initialState = {
     trackImage: "",
     trackArtist: "",
     type: "",
+    openSideBar: false,
   },
 };
 
@@ -22,6 +23,11 @@ const reducer = (state, action) => {
           trackArtist: action.trackArtist,
           type: action.trackType,
         },
+      };
+    case "HANDLE_SIDEBAR":
+      return {
+        ...state,
+        openSideBar: action.openSideBar,
       };
     default:
       return state;
