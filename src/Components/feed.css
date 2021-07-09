@@ -5,7 +5,9 @@
   display: flex;
   flex-direction: column;
 }
-
+.sidebar__icon {
+  display: none;
+}
 .feed__nav {
   flex: 0.1;
   padding: 10px;
@@ -53,4 +55,9 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
+}
+@media (max-width: 650px) {
+  .sidebar__icon {
+    display: block;
+  }
 }

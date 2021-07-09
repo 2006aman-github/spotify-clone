@@ -65,7 +65,7 @@ function Sidebar({ userToken }) {
       }
       // className="sidebar"
     >
-      <div className="sidebar__icon">
+      <div className="sidebar__icon close__icon">
         <IconButton
           color={"secondary"}
           onClick={(e) => {

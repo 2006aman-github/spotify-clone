@@ -20,7 +20,7 @@
 .sidebar img {
   width: 200px;
 }
-.sidebar__icon {
+.close__icon {
   position: relative;
   display: block !important;
   top: 0%;

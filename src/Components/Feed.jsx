@@ -57,17 +57,19 @@ function Feed({ userToken }) {
   return (
     <div className="feed">
       <div className="feed__nav">
-        <IconButton
-          color={"secondary"}
-          onClick={(e) => {
-            dispatch({
-              type: "HANDLE_SIDEBAR",
-              openSideBar: true,
-            });
-          }}
-        >
-          <DehazeIcon />
-        </IconButton>
+        <div className="sidebar__icon">
+          <IconButton
+            color={"secondary"}
+            onClick={(e) => {
+              dispatch({
+                type: "HANDLE_SIDEBAR",
+                openSideBar: true,
+              });
+            }}
+          >
+            <DehazeIcon />
+          </IconButton>
+        </div>
         <div className="profile__btn">
           <img src={userImage} alt="" />
           <span>{user?.display_name}</span>
